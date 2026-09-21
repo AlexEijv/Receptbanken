@@ -1,0 +1,3 @@
+<template>
+  <main class="mx-auto max-w-6xl px-6 py-20 lg:px-12"><p class="text-xs font-bold uppercase tracking-[.2em] text-[#6f8067]">Om Receptbanken</p><h1 class="mt-4 max-w-4xl font-serif text-6xl leading-none tracking-tight text-[#26352f] md:text-8xl">Mat som känns hemma.</h1><div class="mt-16 grid gap-10 border-t border-[#26352f]/15 pt-10 md:grid-cols-2"><div><h2 class="font-serif text-4xl">En samling för riktiga dagar.</h2></div><div class="space-y-5 leading-8 text-[#718078]"><p>Receptbanken gör det enkelt att hitta, spara och dela mat som faktiskt blir lagad. Här möts vardagsfavoriter och nya idéer.</p><p>Vi tror på tydliga recept, generösa smaker och en plats där alla kan bidra med sin egen mattradition.</p></div></div></main>
+</template>

@@ -1,0 +1,7 @@
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { fetchActivityLogs, type ActivityLog } from '../services/api'
+const logs = ref<ActivityLog[]>([]); const errorMessage = ref('')
+onMounted(async () => { try { logs.value = await fetchActivityLogs() } catch (error) { errorMessage.value = error instanceof Error ? error.message : 'Kunde inte hämta loggen.' } })
+</script>
+<template><section class="mt-10 border border-[#26352f]/15 bg-[#fffdf8] p-6 md:p-8"><div class="mb-6 flex items-end justify-between"><div><p class="text-xs font-bold uppercase tracking-[.16em] text-[#6f8067]">Säkerhet och spårbarhet</p><h2 class="mt-2 font-serif text-4xl text-[#26352f]">Aktivitetslogg</h2></div><span class="text-sm text-[#718078]">{{ logs.length }} händelser</span></div><p v-if="errorMessage" class="text-sm text-[#a64d3c]">{{ errorMessage }}</p><div v-else class="grid divide-y divide-[#26352f]/10"> <div v-for="log in logs" :key="log._id" class="grid gap-2 py-4 md:grid-cols-[1fr_1.5fr_auto] md:items-center"><strong class="text-sm text-[#26352f]">{{ log.action }}</strong><span class="text-sm text-[#718078]">{{ log.userId?.username || 'System' }}<span v-if="log.entityType"> · {{ log.entityType }}</span></span><time class="text-xs text-[#718078]">{{ new Date(log.createdAt).toLocaleString('sv-SE') }}</time></div><p v-if="!logs.length" class="py-4 text-sm text-[#718078]">Ingen aktivitet ännu.</p></div></section></template>
