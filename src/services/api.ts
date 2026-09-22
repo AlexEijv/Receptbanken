@@ -39,6 +39,7 @@ export interface AuthUser {
   username: string
   email: string
   role: 'user' | 'admin'
+  profileImage?: string
 }
 export type LoginResponse = AuthUser | { requiresTwoFactor: true }
 

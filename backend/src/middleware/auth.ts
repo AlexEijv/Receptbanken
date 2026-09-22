@@ -16,7 +16,7 @@ export const requireAuth: RequestHandler = async (request, _response, next) => {
       throw new AppError(401, 'Du måste vara inloggad.')
     }
 
-    const user = await UserModel.findById(request.session.userId).select('username email role').lean().exec()
+    const user = await UserModel.findById(request.session.userId).select('username email role profileImage').lean().exec()
     if (!user) {
       request.session.destroy(() => undefined)
       throw new AppError(401, 'Din session är inte längre giltig.')
@@ -27,6 +27,7 @@ export const requireAuth: RequestHandler = async (request, _response, next) => {
       role: user.role,
       username: user.username,
       email: user.email,
+      profileImage: user.profileImage,
     }
     await UserModel.findByIdAndUpdate(user._id, { lastActiveAt: new Date() }).exec()
     next()
