@@ -8,16 +8,16 @@
 				<RouterLink to="/om-oss">Om oss</RouterLink>
 				<RouterLink to="/kontakt">Kontakt</RouterLink>
 			</nav>
-			<details v-if="authStore.user" class="header-user-menu">
-				<summary class="header-profile"><span>{{ authStore.user.username }}</span><span class="profile-dot"><img v-if="authStore.user.profileImage" :src="authStore.user.profileImage" :alt="`Profilbild för ${authStore.user.username}`" /><span v-else>{{ authStore.user.username.charAt(0).toUpperCase() }}</span></span></summary>
+			<div v-if="authStore.user" class="header-user-menu">
+				<RouterLink class="header-profile" to="/profil"><span>{{ authStore.user.username }}</span><span class="profile-dot"><img v-if="authStore.user.profileImage" :src="authStore.user.profileImage" :alt="`Profilbild för ${authStore.user.username}`" /><span v-else>{{ authStore.user.username.charAt(0).toUpperCase() }}</span></span></RouterLink>
 				<div class="profile-dropdown">
-					<div class="profile-dropdown__greeting"><span class="profile-dot"><img v-if="authStore.user.profileImage" :src="authStore.user.profileImage" :alt="`Profilbild för ${authStore.user.username}`" /><span v-else>{{ authStore.user.username.charAt(0).toUpperCase() }}</span></span><strong>Hej, {{ authStore.user.username }}</strong></div>
-					<RouterLink to="/dashboard">Dashboard</RouterLink>
-					<RouterLink to="/favoriter">Favoriter</RouterLink>
-					<RouterLink v-if="authStore.user.role === 'admin'" to="/admin">Admin</RouterLink>
+					<div class="profile-dropdown__greeting"><span class="profile-dot"><img v-if="authStore.user.profileImage" :src="authStore.user.profileImage" :alt="`Profilbild för ${authStore.user.username}`" /><span v-else>{{ authStore.user.username.charAt(0).toUpperCase() }}</span></span><strong>Hej, <span>{{ authStore.user.username }}</span></strong></div>
+					<RouterLink exact-active-class="profile-dropdown__item--active" to="/dashboard">Dashboard</RouterLink>
+					<RouterLink exact-active-class="profile-dropdown__item--active" to="/favoriter">Favoriter</RouterLink>
+					<RouterLink v-if="authStore.user.role === 'admin'" exact-active-class="profile-dropdown__item--active" to="/admin">Admin</RouterLink>
 					<button class="profile-dropdown__logout" type="button" @click="signOut">Logga ut</button>
 				</div>
-			</details>
+			</div>
 			<RouterLink v-if="!authStore.user" class="header-action" to="/logga-in">Logga in <span aria-hidden="true">↗</span></RouterLink>
 			<button v-else type="button" class="header-action" @click="signOut">Logga ut <span aria-hidden="true">↗</span></button>
 		</header>

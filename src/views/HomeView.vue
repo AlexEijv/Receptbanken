@@ -13,7 +13,12 @@ onMounted(() => recipeStore.loadRecipes({ sort: 'newest', limit: 3 }))
 <template>
   <main>
     <section class="hero-section">
-      <div>
+      <div class="hero-content">
+        <div class="hero-actions"><RouterLink class="button button--dark" to="/recept">Utforska recepten <span aria-hidden="true">→</span></RouterLink><RouterLink class="button button--outline" to="/registrera">Skapa gratiskonto</RouterLink></div>
+        <dl class="hero-stats"><div><dt>10k+</dt><dd>Sparade recept</dd></div><div><dt>4.8★</dt><dd>Användarbetyg</dd></div><div><dt>100%</dt><dd>Matglädje</dd></div></dl>
+        <p class="hero-kicker">✽ Ett smartare sätt att spara matglädje</p>
+        <h1 class="hero-title">Receptbanken</h1>
+        <p class="hero-lede">Samla dina favoritrecept på ett ställe. Planera veckans måltider, sök bland fantastiska rätter och skapa ordning i ditt digitala kök.</p>
         <p class="eyebrow">Receptbanken</p>
         <h1>Mat som känns hemma.</h1>
         <p class="hero-copy">Upptäck vardagsfavoriter, nya smaker och recept värda att dela vidare.</p>

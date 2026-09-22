@@ -35,23 +35,35 @@ nav a::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; ba
 nav a:hover, nav a.router-link-exact-active { color: var(--primary); }
 nav a:hover::after, nav a.router-link-exact-active::after { opacity: 1; transform: scaleX(1); }
 .header-user-menu { position: relative; justify-self: end; }
-.header-user-menu summary { list-style: none; cursor: pointer; }
-.header-user-menu summary::-webkit-details-marker { display: none; }
-.header-profile { display: inline-flex; align-items: center; justify-self: end; gap: .65rem; color: var(--text); font-size: .8rem; text-decoration: none; white-space: nowrap; }
+.header-profile { display: inline-flex; align-items: center; justify-self: end; gap: .65rem; color: var(--primary); font-size: .8rem; text-decoration: none; white-space: nowrap; }
 .profile-dot { display: grid; width: 2rem; height: 2rem; place-items: center; overflow: hidden; border: 1px solid var(--primary); border-radius: 50%; color: var(--primary); background: var(--border); font-size: .75rem; font-weight: 700; }
 .profile-dot img { width: 100%; height: 100%; object-fit: cover; }
 .profile-dropdown { position: absolute; z-index: 20; top: 100%; right: 0; display: none; width: 11.5rem; padding: .45rem; border: 1px solid var(--border); background: var(--background); box-shadow: 0 .75rem 2rem color-mix(in srgb, var(--text) 12%, transparent); }
-.header-user-menu:hover .profile-dropdown, .header-user-menu[open] .profile-dropdown { display: grid; }
+.header-user-menu:hover .profile-dropdown { display: grid; }
 .profile-dropdown__greeting { display: flex; align-items: center; gap: .65rem; padding: .65rem .8rem .85rem; border-bottom: 1px solid var(--border); color: var(--text); font-size: .8rem; }
+.profile-dropdown__greeting strong span { color: var(--primary); }
 .profile-dropdown__greeting .profile-dot { width: 2.2rem; height: 2.2rem; flex: 0 0 auto; }
 .profile-dropdown a, .profile-dropdown button { width: 100%; padding: .7rem .8rem; border: 0; color: var(--text); background: transparent; font: inherit; font-size: .85rem; text-align: left; text-decoration: none; cursor: pointer; }
-.profile-dropdown a:hover, .profile-dropdown a.router-link-active { color: var(--primary); background: transparent; }
+.profile-dropdown a:hover, .profile-dropdown a.router-link-active, .profile-dropdown a.profile-dropdown__item--active { color: var(--primary); background: transparent; }
 .profile-dropdown button:hover { color: var(--primary); background: transparent; }
 .profile-dropdown .profile-dropdown__logout, .profile-dropdown .profile-dropdown__logout:hover { color: var(--error); }
 .header-user-menu + .header-action { display: none; }
 .header-action { justify-self: end; border: 1px solid var(--primary); border-radius: 999px; padding: .55rem .85rem; color: var(--primary); background: transparent; cursor: pointer; font-size: .8rem; white-space: nowrap; }
 .header-action span { margin-left: .3rem; color: var(--clay); }
-.hero-section { display: grid; grid-template-columns: minmax(0, 1fr) 330px; align-items: center; gap: 8vw; max-width: 1320px; min-height: 620px; margin: auto; padding: 5rem 8vw 7rem 12vw; background: radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--border) 70%, transparent) 0, transparent 34%); }
+.hero-section { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr); align-items: center; gap: clamp(3rem, 7vw, 8rem); max-width: 1120px; min-height: 510px; margin: 0 auto; padding: 2rem 0 4.5rem; }
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-kicker { order: 1; display: inline-flex; margin: 0 0 1.2rem; padding: .45rem .7rem; border-radius: 999px; color: var(--primary); background: color-mix(in srgb, var(--border) 70%, var(--background)); font-size: .72rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.hero-title { order: 2; max-width: none; margin: 0 0 1rem; color: var(--primary); font-size: clamp(3.5rem, 6vw, 5.8rem); line-height: .95; letter-spacing: -.065em; }
+.hero-lede { order: 3; max-width: 560px; margin: 0 0 1.7rem; color: var(--muted); font-size: 1.05rem; line-height: 1.55; }
+.hero-content > .eyebrow, .hero-content > h1:not(.hero-title), .hero-content > .hero-copy, .hero-content > .button { display: none; }
+.hero-actions { order: 4; display: flex; flex-wrap: wrap; gap: .8rem; }
+.button--outline { border: 1px solid var(--primary); color: var(--primary); background: transparent; }
+.hero-stats { order: 5; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 400px); gap: 1.5rem; margin: 3rem 0 0; }
+.hero-stats div { display: grid; gap: .3rem; }
+.hero-stats dt { color: var(--primary); font-size: 1.25rem; font-weight: 700; letter-spacing: -.04em; }
+.hero-stats dd { margin: 0; color: var(--muted); font-size: .7rem; }
+.hero-visual { width: 100%; height: 440px; min-height: 0; overflow: hidden; transform: none; border: 0; border-radius: 1.7rem; background: url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85') center / cover; }
+.hero-visual > span, .hero-visual > strong { display: none; }
 .eyebrow { margin: 0 0 1.2rem; color: var(--primary); font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { max-width: 700px; margin-bottom: 1.5rem; font-size: clamp(3.4rem, 7vw, 7.4rem); font-weight: 700; line-height: .92; letter-spacing: -.06em; }
@@ -59,8 +71,8 @@ h1 { max-width: 700px; margin-bottom: 1.5rem; font-size: clamp(3.4rem, 7vw, 7.4r
 .button { display: inline-flex; align-items: center; gap: 1rem; padding: .9rem 1.2rem; border-radius: 999px; font-weight: 700; text-decoration: none; }
 .button--dark { color: var(--paper); background: var(--primary); }
 .button--dark span { color: var(--border); font-size: 1.2rem; }
-.hero-stamp { display: grid; width: 245px; height: 245px; place-content: center; justify-items: center; transform: rotate(8deg); border: 1px solid var(--clay); border-radius: 50%; color: var(--clay); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; }
-.hero-stamp strong { margin: .5rem 0; color: var(--ink); font-size: 2.5rem; font-weight: 700; line-height: .85; letter-spacing: -.06em; text-align: center; text-transform: none; }
+.hero-stamp:not(.hero-visual) { display: grid; width: 245px; height: 245px; place-content: center; justify-items: center; transform: rotate(8deg); border: 1px solid var(--clay); border-radius: 50%; color: var(--clay); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; }
+.hero-stamp:not(.hero-visual) strong { margin: .5rem 0; color: var(--ink); font-size: 2.5rem; font-weight: 700; line-height: .85; letter-spacing: -.06em; text-align: center; text-transform: none; }
 .home-band { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; padding: 6rem max(8vw, 2rem); color: var(--paper); background: var(--primary); }
 .home-band .eyebrow { color: var(--border); }
 .home-band h2 { margin: 0; font-size: clamp(2rem, 4vw, 4rem); font-weight: 700; line-height: 1; }
@@ -269,10 +281,14 @@ h1 { max-width: 700px; margin-bottom: 1.5rem; font-size: clamp(3.4rem, 7vw, 7.4r
   .header-profile > span:first-child { display: none; }
   .header-action { grid-column: 2; grid-row: 1; }
   .header-user-menu + .header-action { display: none; }
-  .hero-section { display: block; min-height: auto; padding: 5rem 1.5rem 6rem; }
+  .hero-section { display: grid; grid-template-columns: 1fr; min-height: auto; gap: 2.5rem; padding: 3rem 1.5rem 4rem; }
   h1 { font-size: clamp(3.5rem, 18vw, 6rem); }
-  .hero-stamp { width: 170px; height: 170px; margin: 4rem auto 0; }
-  .hero-stamp strong { font-size: 1.8rem; }
+  .hero-title { font-size: clamp(3.3rem, 14vw, 5rem); }
+  .hero-stats { gap: .8rem; margin-top: 2rem; }
+  .hero-visual { height: 300px; }
+  .hero-stamp:not(.hero-visual) { width: 170px; height: 170px; margin: 4rem auto 0; }
+  .hero-visual { width: 100%; height: 300px; margin: 0; }
+  .hero-stamp:not(.hero-visual) strong { font-size: 1.8rem; }
   .home-band { display: block; padding: 4rem 1.5rem; }
   .home-band h2 { margin-bottom: 2rem; }
   .home-page { padding-bottom: 4rem; }
